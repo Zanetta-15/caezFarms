@@ -137,24 +137,6 @@ export default function Home() {
       </section>
 
       <section className="px-6 sm:px-10">
-        <div className="mx-auto max-w-7xl space-y-10">
-          <div className="space-y-4 text-center">
-            <p className="text-sm uppercase tracking-[0.35em] text-forestSoft">Interactive farm experience</p>
-            <h2 className="text-4xl font-semibold tracking-[-0.04em] text-forestDark sm:text-5xl">
-              See the farm in motion.
-            </h2>
-            <p className="mx-auto max-w-2xl text-base leading-8 text-forestDark/75">
-              Explore CAEZ Farms through visual storytelling, beautiful imagery, and a dynamic gallery that reflects our living landscape.
-            </p>
-          </div>
-
-          <div className="glass-card overflow-hidden">
-            <ImageCarousel />
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 sm:px-10">
         <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-forest/10 bg-forest/5 p-10 text-center shadow-soft">
           <p className="text-sm uppercase tracking-[0.35em] text-forestSoft">Luxury agriculture</p>
           <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-forestDark sm:text-5xl">
