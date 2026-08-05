@@ -99,6 +99,16 @@
     @apply text-white;
   }
 
+  .section.dark .value-card,
+  .section.dark .value-card h3,
+  .section.dark .value-card p {
+    @apply text-forestDark;
+  }
+
+  .section.dark .value-card p {
+    @apply text-forestDark/75;
+  }
+
   .page-header {
     @apply relative overflow-hidden border-b border-forest/10 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),_transparent_22%),linear-gradient(180deg,_rgba(250,245,238,0.96),_rgba(247,243,234,1))] py-24 text-center;
   }
