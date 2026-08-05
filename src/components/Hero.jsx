@@ -3,7 +3,7 @@
 
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import farmAerialImage from '../../images/farm aerial shot.jpeg'
+import farmAerialImage from '../../images/farm-aerial-shot.jpeg'
 
 export default function Hero() {
   return (

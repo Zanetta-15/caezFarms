@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import solarImage from '../../images/Solar.jpeg'
-import aerialImage from '../../images/farm aerial shot.jpeg'
+import aerialImage from '../../images/farm-aerial-shot.jpeg'
 import coconutSproutImage from '../../images/coconut sprout 1.jpeg'
 import teamImage from '../../images/Ed and farm team 1.jpeg'
 
