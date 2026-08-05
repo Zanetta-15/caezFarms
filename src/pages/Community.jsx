@@ -4,6 +4,9 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { BiGroup, BiLeaf, BiRocket } from 'react-icons/bi'
+import teamImage1 from '../../images/Ed and farm team 1.jpeg'
+import teamImage2 from '../../images/Ed and farm team 2.jpeg'
+import teamImage3 from '../../images/Ed and team 3.jpeg'
 
 export default function CommunityPage() {
   return (
@@ -64,7 +67,7 @@ export default function CommunityPage() {
               className="overflow-hidden rounded-[2rem] border border-forest/10 bg-white/90 shadow-soft"
             >
               <img
-                src="/images/Ed and farm team 1.jpeg"
+                src={teamImage1}
                 alt="CAEZ Farms team"
                 className="h-[520px] w-full object-cover object-top sm:h-[620px]"
               />
@@ -126,12 +129,12 @@ export default function CommunityPage() {
                 className="grid gap-6"
               >
                 <img
-                  src="/images/Ed and team 3.jpeg"
+                  src={teamImage3}
                   alt="Bridging the gap"
                   className="h-[340px] w-full rounded-[2rem] object-cover shadow-soft"
                 />
                 <img
-                  src="/images/Ed and farm team 2.jpeg"
+                  src={teamImage2}
                   alt="Community partnership"
                   className="h-[340px] w-full rounded-[2rem] object-cover shadow-soft"
                 />

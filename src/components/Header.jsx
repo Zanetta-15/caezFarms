@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import logoImage from '../../images/caezfarmlogo.png'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -26,7 +27,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 sm:px-10">
         <Link to="/" className="flex items-center gap-3" onClick={closeMenu}>
           <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-forest text-white shadow-soft">
-            <img src="/images/caezfarmlogo.png" alt="CAEZ Farms logo" className="h-10 w-10 object-contain" />
+            <img src={logoImage} alt="CAEZ Farms logo" className="h-10 w-10 object-contain" />
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-forestSoft">CAEZ Farms</p>

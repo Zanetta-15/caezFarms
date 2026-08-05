@@ -4,6 +4,8 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { BiBoltCircle, BiDroplet, BiLeaf } from 'react-icons/bi'
+import coconutSprout1 from '../../images/coconut sprout 1.jpeg'
+import coconutSprout2 from '../../images/coconut sprout 2.jpeg'
 
 export default function Products() {
   return (
@@ -60,7 +62,7 @@ export default function Products() {
               className="overflow-hidden rounded-[2rem] border border-forest/10 bg-white/90 shadow-soft"
             >
               <img
-                src="/images/coconut sprout 1.jpeg"
+                src={coconutSprout1}
                 alt="Coconut sprout cultivation"
                 className="h-[520px] w-full object-cover sm:h-[620px]"
               />
@@ -91,7 +93,7 @@ export default function Products() {
                   Primary Focus
                 </span>
                 <img
-                  src="/images/coconut sprout 2.jpeg"
+                  src={coconutSprout2}
                   alt="Elite Hybrid Coconut"
                   className="h-[480px] w-full object-cover sm:h-[520px]"
                 />
