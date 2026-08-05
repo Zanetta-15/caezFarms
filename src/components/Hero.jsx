@@ -8,10 +8,11 @@ import farmAerialImage from '../../images/farm aerial shot.jpeg'
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden bg-cover bg-center text-white"
-      style={{ backgroundImage: `url(${farmAerialImage})` }}
+      className="relative overflow-hidden bg-cover bg-center bg-no-repeat text-white"
+      style={{
+        backgroundImage: `linear-gradient(rgba(12, 56, 32, 0.55), rgba(12, 56, 32, 0.55)), url(${farmAerialImage})`
+      }}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(15,81,50,0.85),_rgba(15,81,50,0.35))]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.18),_transparent_28%)]" />
       <div className="absolute -left-16 top-16 h-48 w-48 rounded-full bg-emerald-300/20 blur-3xl" />
       <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-yellow-200/20 blur-3xl" />
