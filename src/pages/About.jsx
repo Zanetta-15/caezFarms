@@ -74,30 +74,30 @@ export default function AboutPage() {
           <h2 className="section-title">Our Core Values</h2>
           
           <div className="values-grid lg:grid-cols-2">
-            <div className="value-card">
-              <h3 className="text-2xl font-semibold">Sustainability</h3>
-              <p className="mt-4 text-base leading-8 text-[#2d2d2d]">
+            <div className="value-card text-forestDark">
+              <h3 className="text-2xl font-semibold text-forestDark">Sustainability</h3>
+              <p className="mt-4 text-base leading-8 text-forestDark/75">
                 Environmental responsibility is at the heart of everything we do. We protect natural resources through renewable energy and water conservation for future generations.
               </p>
             </div>
 
-            <div className="value-card">
-              <h3 className="text-2xl font-semibold">Quality</h3>
-              <p className="mt-4 text-base leading-8 text-[#2d2d2d]">
+            <div className="value-card text-forestDark">
+              <h3 className="text-2xl font-semibold text-forestDark">Quality</h3>
+              <p className="mt-4 text-base leading-8 text-forestDark/75">
                 Premium agricultural products crafted with care and expertise. Our elite hybrid coconut, cashew, and mango production meets international standards.
               </p>
             </div>
 
-            <div className="value-card">
-              <h3 className="text-2xl font-semibold">Innovation</h3>
-              <p className="mt-4 text-base leading-8 text-[#2d2d2d]">
+            <div className="value-card text-forestDark">
+              <h3 className="text-2xl font-semibold text-forestDark">Innovation</h3>
+              <p className="mt-4 text-base leading-8 text-forestDark/75">
                 Embracing modern farming techniques, advanced irrigation, and renewable energy to achieve excellence in agriculture while maintaining tradition.
               </p>
             </div>
 
-            <div className="value-card">
-              <h3 className="text-2xl font-semibold">Community</h3>
-              <p className="mt-4 text-base leading-8 text-[#2d2d2d]">
+            <div className="value-card text-forestDark">
+              <h3 className="text-2xl font-semibold text-forestDark">Community</h3>
+              <p className="mt-4 text-base leading-8 text-forestDark/75">
                 Building strong partnerships and creating opportunities that improve lives and promote regional growth in Kwame Danso and beyond.
               </p>
             </div>
