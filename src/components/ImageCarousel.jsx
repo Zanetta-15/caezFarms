@@ -1,23 +1,27 @@
 import { useEffect, useState } from 'react'
+import solarImage from '../../images/solar.jpeg'
+import aerialImage from '../../images/farm aerial shot.jpeg'
+import coconutSproutImage from '../../images/coconut sprout 1.jpeg'
+import teamImage from '../../images/Ed and farm team 1.jpeg'
 
 const images = [
   {
-    src: '/images/solar.jpeg',
+    src: solarImage,
     alt: 'Solar panels at CAEZ Farms',
     caption: 'Solar power supports sustainable farm operations.'
   },
   {
-    src: '/images/farm aerial shot.jpeg',
+    src: aerialImage,
     alt: 'Aerial view of CAEZ Farms',
     caption: 'Aerial view of the CAEZ Farms landscape in Ghana.'
   },
   {
-    src: '/images/coconut sprout 1.jpeg',
+    src: coconutSproutImage,
     alt: 'Coconut sprout at CAEZ Farms',
     caption: 'Elite hybrid coconut cultivation thriving in fertile soil.'
   },
   {
-    src: '/images/Ed and farm team 1.jpeg',
+    src: teamImage,
     alt: 'CAEZ Farms team on site',
     caption: 'Local team members working together in the field.'
   }
