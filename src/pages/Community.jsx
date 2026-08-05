@@ -131,12 +131,12 @@ export default function CommunityPage() {
                 <img
                   src={teamImage3}
                   alt="Bridging the gap"
-                  className="h-[340px] w-full rounded-[2rem] object-cover shadow-soft"
+                  className="h-[340px] w-full rounded-[2rem] object-cover object-top shadow-soft"
                 />
                 <img
                   src={teamImage2}
                   alt="Community partnership"
-                  className="h-[340px] w-full rounded-[2rem] object-cover shadow-soft"
+                  className="h-[340px] w-full rounded-[2rem] object-cover object-top shadow-soft"
                 />
               </motion.div>
             </div>
