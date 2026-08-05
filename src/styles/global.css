@@ -1,0 +1,270 @@
+/* ===================================
+   CAEZ FARMS WEBSITE - GLOBAL STYLES
+   =================================== */
+
+:root {
+  --color-forest: #0f2f1f;
+  --color-forest-dark: #0b2315;
+  --color-forest-soft: #255339;
+  --color-cream: #f7f3ea;
+  --color-ivory: #faf5ee;
+  --color-sand: #e7ddcc;
+  --color-accent: #bc3d1f;
+  --color-accent-soft: #f2a176;
+  --color-muted: #5d5a50;
+  --color-border: #d8cfbf;
+  --color-text: #16230f;
+  --color-heading: #122010;
+  --color-white: #ffffff;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 5rem;
+
+  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --font-size-xs: 0.85rem;
+  --font-size-sm: 0.95rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.15rem;
+  --font-size-xl: 1.65rem;
+  --font-size-2xl: 2.4rem;
+  --font-size-3xl: 3.6rem;
+  --font-size-4xl: 4.5rem;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.55;
+  --line-height-relaxed: 1.9;
+
+  --shadow-sm: 0 3px 10px rgba(16, 50, 31, 0.06);
+  --shadow-md: 0 10px 24px rgba(16, 50, 31, 0.12);
+  --shadow-lg: 0 18px 40px rgba(16, 50, 31, 0.16);
+
+  --transition: all 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-cream);
+}
+
+body::selection {
+  background: rgba(188, 61, 31, 0.15);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+p,
+li,
+button,
+input,
+textarea,
+select {
+  color: var(--color-text);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-relaxed);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.9rem 1.6rem;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-forest-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn-secondary:hover {
+  background-color: #a5381a;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-forest);
+  border: 1.5px solid var(--color-forest);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+}
+
+.container {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.section {
+  padding: calc(var(--spacing-2xl) + 1rem) 0;
+}
+
+.section.light {
+  background-color: var(--color-ivory);
+}
+
+.section.dark {
+  background-color: var(--color-forest);
+  color: var(--color-white);
+}
+
+.section.dark h2,
+.section.dark h3,
+.section.dark p,
+.section.dark a {
+  color: var(--color-white);
+}
+
+.section.dark .btn-outline {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  font-size: var(--font-size-2xl);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.card {
+  background-color: var(--color-white);
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.8rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: calc(var(--spacing-xl) + 1rem) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.65rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.9rem 1rem;
+  }
+}

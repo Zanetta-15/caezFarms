@@ -1,0 +1,39 @@
+# Frontend dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Frontend build output
+dist/
+build/
+
+# Environment variables - NEVER commit .env files
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Dependencies lock files (optional - uncomment if needed)
+# package-lock.json
+# yarn.lock
