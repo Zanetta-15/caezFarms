@@ -48,7 +48,7 @@ export default function Header() {
               to={item.to}
               end={item.to === '/'}
               className={({ isActive }) =>
-                `transition duration-300 ${isActive ? 'text-forest' : 'text-forestDark/80 hover:text-forest'}`
+                `transition duration-300 ${isActive ? 'text-forest border-b-2 border-forest pb-1' : 'text-forestDark/80 hover:text-forest'}`
               }
             >
               {item.label}
@@ -57,9 +57,9 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
-          <Link to="/contact" className="inline-flex items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream shadow-soft transition duration-300 hover:-translate-y-0.5">
+          <a href="mailto:eafful@caezfarms.com" className="inline-flex items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream shadow-soft transition duration-300 hover:-translate-y-0.5">
             Contact Us
-          </Link>
+          </a>
         </div>
 
         <button
@@ -95,13 +95,13 @@ export default function Header() {
               {item.label}
             </NavLink>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="mailto:eafful@caezfarms.com"
             className="block rounded-2xl bg-forest px-4 py-3 text-center text-sm font-semibold text-cream shadow-soft"
             onClick={closeMenu}
           >
             Contact Us
-          </Link>
+          </a>
         </div>
       </div>
     </motion.header>

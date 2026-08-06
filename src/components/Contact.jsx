@@ -1,158 +1,274 @@
-// Contact Component - Contact form and contact information
-// Allows users to send messages to CAEZ Farms
+// Contact Component - Contact form using Web3Forms
+// No backend or database required. Uses client-side fetch to submit.
 
 import { useState } from 'react'
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
-  const [submitStatus, setSubmitStatus] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
+const initialFormState = {
+  fullName: '',
+  email: '',
+  phone: '',
+  subject: '',
+  message: '',
+  website: '' // hidden honeypot field for spam protection
+}
+
+const initialErrors = {
+  fullName: '',
+  email: '',
+  message: ''
+}
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function validate(values) {
+  const errors = { ...initialErrors }
+
+  if (!values.fullName.trim()) {
+    errors.fullName = 'Full Name is required.'
+  }
+
+  if (!values.email.trim()) {
+    errors.email = 'Email Address is required.'
+  } else if (!emailPattern.test(values.email.trim())) {
+    errors.email = 'Please enter a valid email address.'
+  }
+
+  if (!values.message.trim()) {
+    errors.message = 'Message is required.'
+  }
+
+  return errors
+}
+
+export default function Contact() {
+  const [formData, setFormData] = useState(initialFormState)
+  const [errors, setErrors] = useState(initialErrors)
+  const [status, setStatus] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setFormData((current) => ({
+      ...current,
       [name]: value
+    }))
+    setErrors((current) => ({
+      ...current,
+      [name]: ''
     }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setSubmitStatus('')
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    setStatus(null)
+
+    const validationErrors = validate(formData)
+    const hasErrors = Object.values(validationErrors).some(Boolean)
+
+    if (hasErrors) {
+      setErrors(validationErrors)
+      return
+    }
+
+    if (!accessKey) {
+      setStatus({
+        type: 'error',
+        message:
+          'Contact form is not configured. Please add VITE_WEB3FORMS_ACCESS_KEY to your .env file.'
+      })
+      return
+    }
+
+    setIsSubmitting(true)
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject:
+            formData.subject.trim() || 'New message from CAEZ Farms contact form',
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          website: formData.website
+        })
       })
 
-      if (response.ok) {
-        setSubmitStatus('success')
-        setFormData({ name: '', email: '', subject: '', message: '' })
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setStatus({
+          type: 'success',
+          message: 'Thank you! Your message has been sent successfully.'
+        })
+        setFormData(initialFormState)
       } else {
-        setSubmitStatus('error')
+        setStatus({
+          type: 'error',
+          message:
+            result.message ||
+            'Sorry, something went wrong while sending your message.'
+        })
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
-      setSubmitStatus('error')
+      console.error('Web3Forms submission error:', error)
+      setStatus({
+        type: 'error',
+        message:
+          'Unable to send your message right now. Please try again later.'
+      })
     } finally {
-      setIsLoading(false)
+      setIsSubmitting(false)
     }
   }
 
   return (
     <section className="section light">
-      <div className="container">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:items-start">
-          <div className="space-y-8">
-            <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-forestSoft">Contact</p>
-              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-forestDark sm:text-5xl">
-                Get in touch with CAEZ Farms
-              </h2>
-            </div>
-
-            <div className="glass-card p-8 space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-forestDark">Location</h3>
-                <p className="mt-3 text-base leading-7 text-forestDark/75">Kwame Danso, Bono East Region, Ghana</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-forestDark">Email</h3>
-                <p className="mt-3 text-base leading-7 text-forestDark/75">
-                  <a href="mailto:info@caezfarms.com" className="text-forestDark underline">info@caezfarms.com</a>
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-forestDark">Business Hours</h3>
-                <p className="mt-3 text-base leading-7 text-forestDark/75">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p className="text-base leading-7 text-forestDark/75">Saturday: 9:00 AM - 2:00 PM</p>
-              </div>
-            </div>
+      <div className="container mx-auto px-6 py-12">
+        <div className="mx-auto max-w-4xl rounded-[2rem] border border-forest/10 bg-cream/90 p-8 shadow-soft">
+          <div className="mb-8 text-center">
+            <p className="text-sm uppercase tracking-[0.35em] text-forestSoft">Contact</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-forestDark sm:text-5xl">
+              Send us a message
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-base leading-8 text-forestDark/75">
+              Have a question about premium agriculture, renewable energy,
+              or partnering with CAEZ Farms? Use the form below.
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-forestDark">Your Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="John Doe"
-                className="mt-3 w-full rounded-3xl border border-forest/10 bg-cream px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
-              />
+          <form onSubmit={handleSubmit} noValidate className="space-y-6" aria-live="polite">
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              className="sr-only"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <label className="block">
+                <span className="text-sm font-semibold text-forestDark">Full Name</span>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.fullName)}
+                  aria-describedby="fullName-error"
+                  placeholder="John Doe"
+                  className="mt-3 w-full rounded-3xl border border-forest/10 bg-white px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
+                />
+                {errors.fullName && (
+                  <p id="fullName-error" className="mt-2 text-sm text-rose-700">
+                    {errors.fullName}
+                  </p>
+                )}
+              </label>
+
+              <label className="block">
+                <span className="text-sm font-semibold text-forestDark">Email Address</span>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby="email-error"
+                  placeholder="john@example.com"
+                  className="mt-3 w-full rounded-3xl border border-forest/10 bg-white px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
+                />
+                {errors.email && (
+                  <p id="email-error" className="mt-2 text-sm text-rose-700">
+                    {errors.email}
+                  </p>
+                )}
+              </label>
             </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-forestDark">Email Address</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="john@example.com"
-                className="mt-3 w-full rounded-3xl border border-forest/10 bg-cream px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
-              />
+            <div className="grid gap-6 md:grid-cols-2">
+              <label className="block">
+                <span className="text-sm font-semibold text-forestDark">Phone Number</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+233 24 000 0000"
+                  className="mt-3 w-full rounded-3xl border border-forest/10 bg-white px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
+                />
+              </label>
+
+              <label className="block">
+                <span className="text-sm font-semibold text-forestDark">Subject</span>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Partnership inquiry"
+                  className="mt-3 w-full rounded-3xl border border-forest/10 bg-white px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
+                />
+              </label>
             </div>
 
-            <div>
-              <label htmlFor="subject" className="block text-sm font-semibold text-forestDark">Subject</label>
-              <input
-                id="subject"
-                name="subject"
-                type="text"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-                placeholder="Your subject"
-                className="mt-3 w-full rounded-3xl border border-forest/10 bg-cream px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-semibold text-forestDark">Message</label>
+            <label className="block">
+              <span className="text-sm font-semibold text-forestDark">Message</span>
               <textarea
-                id="message"
                 name="message"
-                rows="5"
                 value={formData.message}
                 onChange={handleChange}
                 required
-                placeholder="Your message here..."
-                className="mt-3 w-full rounded-[1.5rem] border border-forest/10 bg-cream px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
+                aria-invalid={Boolean(errors.message)}
+                aria-describedby="message-error"
+                rows="6"
+                placeholder="Tell us how we can help..."
+                className="mt-3 w-full rounded-[1.75rem] border border-forest/10 bg-white px-5 py-4 text-base text-forestDark shadow-sm outline-none transition focus:border-forest focus:ring-4 focus:ring-forest/10"
               />
-            </div>
+              {errors.message && (
+                <p id="message-error" className="mt-2 text-sm text-rose-700">
+                  {errors.message}
+                </p>
+              )}
+            </label>
 
             <button
               type="submit"
-              disabled={isLoading}
-              className="inline-flex w-full items-center justify-center rounded-full bg-forest px-8 py-4 text-sm font-semibold text-cream shadow-soft transition duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+              disabled={isSubmitting}
+              className="inline-flex w-full items-center justify-center rounded-full bg-forest px-8 py-4 text-sm font-semibold text-cream transition duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              {isLoading ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
 
-            {submitStatus === 'success' && (
-              <div className="rounded-3xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-900">
-                ✓ Thank you! Your message has been sent successfully.
+            {status?.type === 'success' && (
+              <div
+                className="rounded-3xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-900"
+                role="status"
+              >
+                {status.message}
               </div>
             )}
-            {submitStatus === 'error' && (
-              <div className="rounded-3xl border border-rose-200 bg-rose-50 px-5 py-4 text-sm font-semibold text-rose-900">
-                ✕ Sorry, there was an error sending your message. Please try again.
+
+            {status?.type === 'error' && (
+              <div
+                className="rounded-3xl border border-rose-200 bg-rose-50 px-5 py-4 text-sm font-semibold text-rose-900"
+                role="alert"
+              >
+                {status.message}
               </div>
             )}
           </form>

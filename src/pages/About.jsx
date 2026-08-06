@@ -41,6 +41,9 @@ export default function AboutPage() {
             <p className="mt-6 max-w-3xl text-base leading-8 text-forestDark/75">
               At CAEZ Farms, every decision is guided by environmental stewardship, premium product quality, and meaningful community partnerships that deliver long-term value.
             </p>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-forestDark/75">
+              Sustainable energy is central to our model. CAEZ Farms integrates solar farming into operations to improve energy efficiency, support reliable production, and reduce dependence on conventional power while protecting the environment.
+            </p>
           </motion.div>
         </div>
       </section>

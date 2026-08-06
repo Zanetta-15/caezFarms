@@ -3,16 +3,20 @@
 
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import farmAerialImage from '../../images/farm-aerial-shot.jpeg'
+import farmAerialVideo from '../../images/aerial video.mp4'
 
 export default function Hero() {
   return (
-    <section
-      className="relative overflow-hidden bg-cover bg-center bg-no-repeat text-white"
-      style={{
-        backgroundImage: `linear-gradient(rgba(12, 56, 32, 0.55), rgba(12, 56, 32, 0.55)), url(${farmAerialImage})`
-      }}
-    >
+    <section className="relative overflow-hidden text-white">
+      <video
+        src={farmAerialVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(12,56,32,0.55),rgba(12,56,32,0.55))]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.18),_transparent_28%)]" />
       <div className="absolute -left-16 top-16 h-48 w-48 rounded-full bg-emerald-300/20 blur-3xl" />
       <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-yellow-200/20 blur-3xl" />
