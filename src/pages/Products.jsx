@@ -6,6 +6,8 @@ import { motion } from 'framer-motion'
 import { BiBoltCircle, BiDroplet, BiLeaf } from 'react-icons/bi'
 import coconutSprout1 from '../../images/coconut sprout 1.jpeg'
 import coconutSprout2 from '../../images/coconut sprout 2.jpeg'
+import farmPlan1 from '../../images/caezfarm plan 1.jpeg'
+import farmPlan2 from '../../images/caez farm plan 2.jpeg'
 
 export default function Products() {
   return (
@@ -148,6 +150,34 @@ export default function Products() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="space-y-4 text-center">
+            <h2 className="section-title">CAEZ Farm Plans</h2>
+            <p className="mx-auto max-w-3xl text-base leading-8 text-forestDark/75">
+              Explore the layout of CAEZ Farm Plan 1 and Plan 2 as part of our development and expansion strategy.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="overflow-hidden rounded-[2rem] border border-forest/10 bg-white/90 shadow-soft">
+              <img
+                src={farmPlan1}
+                alt="CAEZ Farm Plan 1"
+                className="h-[520px] w-full object-cover sm:h-[520px]"
+              />
+            </div>
+            <div className="overflow-hidden rounded-[2rem] border border-forest/10 bg-white/90 shadow-soft">
+              <img
+                src={farmPlan2}
+                alt="CAEZ Farm Plan 2"
+                className="h-[520px] w-full object-cover sm:h-[520px]"
+              />
+            </div>
           </div>
         </div>
       </section>

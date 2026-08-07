@@ -40,7 +40,7 @@ export default function Header() {
             { to: '/', label: 'Home' },
             { to: '/about', label: 'About' },
             { to: '/products', label: 'Farms' },
-            { to: '/blog', label: 'Sustainability' },
+            { to: '/blog', label: 'Blog' },
             { to: '/community', label: 'Community' }
           ].map((item) => (
             <NavLink
@@ -57,9 +57,9 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
-          <a href="mailto:eafful@caezfarms.com" className="inline-flex items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream shadow-soft transition duration-300 hover:-translate-y-0.5">
+          <Link to="/contact" className="inline-flex items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream shadow-soft transition duration-300 hover:-translate-y-0.5">
             Contact Us
-          </a>
+          </Link>
         </div>
 
         <button
@@ -80,7 +80,7 @@ export default function Header() {
             { to: '/', label: 'Home' },
             { to: '/about', label: 'About' },
             { to: '/products', label: 'Farms' },
-            { to: '/blog', label: 'Sustainability' },
+            { to: '/blog', label: 'Blog' },
             { to: '/community', label: 'Community' }
           ].map((item) => (
             <NavLink

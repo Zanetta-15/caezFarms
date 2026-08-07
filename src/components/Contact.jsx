@@ -86,21 +86,21 @@ export default function Contact() {
     setIsSubmitting(true)
 
     try {
+      const submissionData = new FormData()
+      submissionData.append('access_key', accessKey)
+      submissionData.append(
+        'subject',
+        formData.subject.trim() || 'New message from CAEZ Farms contact form'
+      )
+      submissionData.append('fullName', formData.fullName)
+      submissionData.append('email', formData.email)
+      submissionData.append('phone', formData.phone)
+      submissionData.append('message', formData.message)
+      submissionData.append('website', formData.website)
+
       const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject:
-            formData.subject.trim() || 'New message from CAEZ Farms contact form',
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          website: formData.website
-        })
+        body: submissionData
       })
 
       const result = await response.json()
