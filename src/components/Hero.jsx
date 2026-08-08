@@ -34,7 +34,9 @@ export default function Hero() {
         loop
         playsInline
         preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
+        disablePictureInPicture
+        controlsList="nofullscreen nodownload"
+        className="absolute inset-0 h-full w-full object-cover pointer-events-none"
       />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(12,56,32,0.55),rgba(12,56,32,0.55))]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.18),_transparent_28%)]" />
