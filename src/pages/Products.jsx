@@ -164,18 +164,18 @@ export default function Products() {
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <div className="overflow-hidden rounded-[2rem] border border-forest/10 bg-white/90 shadow-soft">
+            <div className="overflow-hidden rounded-[2rem] border border-forest/10 bg-[rgba(247,243,234,0.8)] p-3 shadow-soft sm:p-4">
               <img
                 src={farmPlan1}
                 alt="CAEZ Farm Plan 1"
-                className="h-[520px] w-full object-cover sm:h-[520px]"
+                className="w-full rounded-[1.4rem] object-contain shadow-sm"
               />
             </div>
-            <div className="overflow-hidden rounded-[2rem] border border-forest/10 bg-white/90 shadow-soft">
+            <div className="overflow-hidden rounded-[2rem] border border-forest/10 bg-[rgba(247,243,234,0.8)] p-3 shadow-soft sm:p-4">
               <img
                 src={farmPlan2}
                 alt="CAEZ Farm Plan 2"
-                className="h-[520px] w-full object-cover sm:h-[520px]"
+                className="w-full rounded-[1.4rem] object-contain shadow-sm"
               />
             </div>
           </div>
