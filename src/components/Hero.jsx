@@ -1,19 +1,39 @@
 // Hero Component - Large banner section with main call-to-action
 // Displays hero image, headline, and action buttons
 
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import farmAerialVideo from '../../images/aerial video.mp4'
 
 export default function Hero() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const playVideo = async () => {
+      try {
+        await video.play()
+      } catch {
+        // Some browsers block autoplay until interaction; this keeps the experience smooth.
+      }
+    }
+
+    playVideo()
+  }, [])
+
   return (
     <section className="relative overflow-hidden text-white">
       <video
+        ref={videoRef}
         src={farmAerialVideo}
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(12,56,32,0.55),rgba(12,56,32,0.55))]" />
